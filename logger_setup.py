@@ -47,6 +47,17 @@ def setup_logging():
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
 
+    # Silence noisy third-party loggers
+    logging.getLogger('pdfminer').setLevel(logging.WARNING)
+    logging.getLogger('pdfminer.psparser').setLevel(logging.WARNING)
+    logging.getLogger('pdfminer.pdfparser').setLevel(logging.WARNING)
+    logging.getLogger('pdfminer.pdfdocument').setLevel(logging.WARNING)
+    logging.getLogger('pdfminer.pdfpage').setLevel(logging.WARNING)
+    logging.getLogger('selenium').setLevel(logging.WARNING)
+    logging.getLogger('selenium.webdriver').setLevel(logging.WARNING)
+    logging.getLogger('urllib3').setLevel(logging.WARNING)
+    logging.getLogger('urllib3.connectionpool').setLevel(logging.WARNING)
+
     # Log the setup
     logger.info("="*60)
     logger.info("Logging initialized")
